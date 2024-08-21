@@ -1,2 +1,14 @@
-# User-Management-System
-A full-stack web application for managing users, built with React.js, Node.js, and MongoDB, featuring user listing and creation functionality, input validation, and Dockerization for easy deployment
+# User Management System
+
+## Overview
+
+A full-stack web application for managing users, built with React.js
+
+## Features
+
+- User listing and creation functionality
+- Input validation for user data
+
+## Technologies Used
+
+- Frontend: React.js
