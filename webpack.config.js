@@ -2,13 +2,13 @@ const path = require("path");
 
 module.exports = {
   mode: "development",
-  entry: "./src/index.js",
+  entry: "./client/src/index.js",
   output: {
     path: path.resolve(__dirname, "./"),
     filename: "bundle.js",
   },
   devServer: {
-    static: "./",
+    static: "./client/",
     port: 3000,
     open: true,
   },

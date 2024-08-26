@@ -1,0 +1,23 @@
+const express = require("express");
+const app = express();
+const mongoose = require("mongoose");
+const userRoutes = require("./routes/userRoutes");
+
+mongoose.connect("mongodb://localhost:27017/mydatabase", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const db = mongoose.connection;
+
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", () => {
+  console.log("Connected to MongoDB");
+});
+
+app.use(express.json());
+app.use("/api/users", userRoutes);
+
+app.listen(3001, () => {
+  console.log("Server started on port 3001");
+});
