@@ -1,15 +1,11 @@
 import React from "react";
-import Users from "../components/UserList";
 import { createRoot } from "react-dom/client";
+import App from "../components/App";
 
-const App = () => {
-  return (
-    <>
-      <Users />
-    </>
-  );
+const Root = () => {
+  return <App />;
 };
 
 const container = document.getElementById("root");
 const root = createRoot(container);
-root.render(<App />);
+root.render(<Root />);

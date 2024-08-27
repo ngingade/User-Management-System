@@ -2,3 +2,11 @@
   margin-bottom: 10px;
   margin-top: 10px;
 }
+
+.card-wrapper {
+  min-height: 130px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
