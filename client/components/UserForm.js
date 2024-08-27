@@ -4,7 +4,7 @@ import { Form, FormGroup, FormLabel, FormControl } from "react-bootstrap";
 const UserForm = ({ onChange, errors, values }) => {
   return (
     <Form>
-      <FormGroup className="mt-2" controlId="firstName">
+      <FormGroup className="mt-3" controlId="firstName">
         <FormLabel>Firstname</FormLabel>
         <FormControl
           type="text"
@@ -16,7 +16,7 @@ const UserForm = ({ onChange, errors, values }) => {
           <div className="text-danger">{errors.firstName}</div>
         )}
       </FormGroup>
-      <FormGroup className="mt-2" controlId="lastName">
+      <FormGroup className="mt-3" controlId="lastName">
         <FormLabel>Lastname</FormLabel>
         <FormControl
           type="text"
@@ -28,7 +28,7 @@ const UserForm = ({ onChange, errors, values }) => {
           <div className="text-danger">{errors.lastName}</div>
         )}
       </FormGroup>
-      <FormGroup className="mt-2" controlId="email">
+      <FormGroup className="mt-3" controlId="email">
         <FormLabel>Email</FormLabel>
         <FormControl
           type="email"

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import UserForm from "./UserForm";
 import UserFormButtons from "./UserFormButtons";
 import { Container, Row, Col } from "react-bootstrap";
+import LoadingStatus from "./LoadingStatus";
 
 const CreateUser = ({ onSetShowForm }) => {
   const [newUser, setNewUser] = useState({
@@ -9,6 +10,7 @@ const CreateUser = ({ onSetShowForm }) => {
     lastName: "",
     email: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const [errors, setErrors] = useState({
     firstName: "",
@@ -23,6 +25,7 @@ const CreateUser = ({ onSetShowForm }) => {
       body: JSON.stringify(newUser),
     });
     const data = await response.json();
+    setIsLoading(false);
     onSetShowForm(false);
   };
 
@@ -70,26 +73,31 @@ const CreateUser = ({ onSetShowForm }) => {
     event.preventDefault();
     const isValid = validateForm();
     if (isValid) {
+      setIsLoading(true);
       createUser();
     }
   };
 
   return (
     <Container className="align-content-center h-100">
-      <Row className="justify-content-center">
-        <Col xs={12} md={6}>
-          <h2>Create User</h2>
-          <UserForm
-            onChange={handleInputChange}
-            errors={errors}
-            values={newUser}
-          />
-          <UserFormButtons
-            onCancel={() => onSetShowForm(false)}
-            onCreate={handleSubmit}
-          />
-        </Col>
-      </Row>
+      {isLoading ? (
+        <LoadingStatus />
+      ) : (
+        <Row className="justify-content-center">
+          <Col xs={12} md={6}>
+            <h2>Create User</h2>
+            <UserForm
+              onChange={handleInputChange}
+              errors={errors}
+              values={newUser}
+            />
+            <UserFormButtons
+              onCancel={() => onSetShowForm(false)}
+              onCreate={handleSubmit}
+            />
+          </Col>
+        </Row>
+      )}
     </Container>
   );
 };
