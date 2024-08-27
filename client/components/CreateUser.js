@@ -1,8 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
+import React, { useState } from "react";
+import UserForm from "./UserForm";
+import UserFormButtons from "./UserFormButtons";
+import { Container, Row, Col } from "react-bootstrap";
 
-function CreateUser({ onSetShowForm }) {
+const CreateUser = ({ onSetShowForm }) => {
   const [newUser, setNewUser] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+  });
+
+  const [errors, setErrors] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -18,69 +26,72 @@ function CreateUser({ onSetShowForm }) {
     onSetShowForm(false);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    createUser();
-  };
-
   const handleInputChange = (event) => {
     setNewUser({ ...newUser, [event.target.name]: event.target.value });
+    setErrors({ ...errors, [event.target.name]: "" });
+  };
+
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = { ...errors };
+
+    if (!/^[a-zA-Z]+$/.test(newUser.firstName)) {
+      newErrors.firstName = "Only alphabetical characters are allowed";
+      isValid = false;
+    }
+
+    if (newUser.firstName.length > 100) {
+      newErrors.firstName = "Maximum length is 100 characters";
+      isValid = false;
+    }
+
+    if (!/^[a-zA-Z]+$/.test(newUser.lastName)) {
+      newErrors.lastName = "Only alphabetical characters are allowed";
+      isValid = false;
+    }
+
+    if (newUser.lastName.length > 100) {
+      newErrors.lastName = "Maximum length is 100 characters";
+      isValid = false;
+    }
+
+    if (
+      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(newUser.email)
+    ) {
+      newErrors.email = "Invalid email address";
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const isValid = validateForm();
+    if (isValid) {
+      createUser();
+    }
   };
 
   return (
     <Container className="align-content-center h-100">
       <Row className="justify-content-center">
         <Col xs={12} md={6}>
-          <h2>Users</h2>
-
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="firstName">
-              <Form.Label className="mt-4">Firstname</Form.Label>
-              <Form.Control
-                type="text"
-                name="firstName"
-                value={newUser.firstName}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="lastName">
-              <Form.Label className="mt-4">Lastname</Form.Label>
-              <Form.Control
-                type="text"
-                name="lastName"
-                value={newUser.lastName}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="email">
-              <Form.Label className="mt-4">Email</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                value={newUser.email}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Row className="mt-4">
-              <Col md={12} className="text-right">
-                <Button
-                  className="col-4 mr-3"
-                  variant="secondary"
-                  type="button"
-                  onClick={() => onSetShowForm(false)}
-                >
-                  Cancel
-                </Button>
-                <Button className="col-4" variant="primary" type="submit">
-                  Create
-                </Button>
-              </Col>
-            </Row>
-          </Form>
+          <h2>Create User</h2>
+          <UserForm
+            onChange={handleInputChange}
+            errors={errors}
+            values={newUser}
+          />
+          <UserFormButtons
+            onCancel={() => onSetShowForm(false)}
+            onCreate={handleSubmit}
+          />
         </Col>
       </Row>
     </Container>
   );
-}
+};
 
 export default CreateUser;
