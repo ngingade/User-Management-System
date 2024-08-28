@@ -1,0 +1,18 @@
+{
+  "name": "user-management-system-server",
+  "version": "1.0.0",
+  "description": "Server-side application for managing user accounts, built with Node.js, Express, and MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "server": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-validator": "^7.2.0",
+    "mongoose": "^8.5.4"
+  },
+  "devDependencies": {}
+}
