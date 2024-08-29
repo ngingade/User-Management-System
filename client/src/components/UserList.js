@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { BsPlus } from "react-icons/bs";
 import LoadingStatus from "./LoadingStatus";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Users({ onSetShowForm }) {
   const [users, setUsers] = useState([]);
@@ -9,9 +11,26 @@ function Users({ onSetShowForm }) {
 
   useEffect(() => {
     fetch("http://localhost:3002/api/users")
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
       .then((data) => {
         setUsers(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        toast.error(`Error fetching users`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         setIsLoading(false);
       });
   }, []);
@@ -34,6 +53,17 @@ function Users({ onSetShowForm }) {
               </Card>
             </Col>
           ))}
+
+          {users.length === 0 && (
+            <Col xs={12} md={4} lg={3}>
+              <Card className="row-spacing card-wrapper">
+                <Card.Body className="align-content-center text-center">
+                  Get started by creating your first user. Click the '+' button
+                  to begin!
+                </Card.Body>
+              </Card>
+            </Col>
+          )}
           <Col xs={12} md={4} lg={3}>
             <Card
               className="row-spacing card-wrapper"
