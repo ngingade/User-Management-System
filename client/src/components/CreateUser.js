@@ -19,7 +19,7 @@ const CreateUser = ({ onSetShowForm }) => {
   });
 
   const createUser = async () => {
-    const response = await fetch("http://localhost:3001/api/users", {
+    const response = await fetch("http://localhost:3002/api/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newUser),

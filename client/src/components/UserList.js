@@ -8,7 +8,7 @@ function Users({ onSetShowForm }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/users")
+    fetch("http://localhost:3002/api/users")
       .then((response) => response.json())
       .then((data) => {
         setUsers(data);
