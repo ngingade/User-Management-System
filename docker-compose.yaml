@@ -1,5 +1,8 @@
 version: "3"
 
+# CI/CD ONLY: Use Docker executable path for pipeline builds. Comment out or remove when running locally.
+x-docker-executable: ${DOCKER_EXECUTABLE}
+
 services:
   client:
     build:
