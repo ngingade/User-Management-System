@@ -37,6 +37,9 @@ jobs:
 
       - name: Install Docker
         uses: docker/setup-buildx-action@v2
+      - name: Print environment variables
+        run: |
+          printenv
 
       - name: Deploy to production
         env:
