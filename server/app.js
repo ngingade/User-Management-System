@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes");
 
-mongoose.connect("mongodb://mongo:27017/mydatabase", {
+mongoose.connect("mongodb://localhost:27017/mydatabase", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -27,6 +27,6 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use("/api/users", userRoutes);
 
-app.listen(3001, () => {
-  console.log("Server started on port 3001");
+app.listen(3002, () => {
+  console.log("Server started on port 3002");
 });
