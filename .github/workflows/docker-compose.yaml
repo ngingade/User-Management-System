@@ -42,14 +42,17 @@ jobs:
         run: |
           which docker
           docker --version
-
+          
       - name: Deploy to production
         env:
           PATH: $PATH:/usr/local/bin
           DOCKER_EXECUTABLE: /usr/bin/docker
-        run: |
-          cd ..
-          docker-compose -f /home/runner/work/User-Management-System/User-Management-System/docker-compose.yaml up -d
+        uses: docker/compose-action@v2
+        with:
+          working-dir: /home/runner/work/User-Management-System/User-Management-System
+          docker-compose-version: '1.29.2'
+          docker-compose-file: docker-compose.yaml
+          action: up -d
 
       - name: Print environment variables
         run: |
