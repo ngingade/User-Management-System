@@ -47,7 +47,7 @@ jobs:
         env:
           PATH: $PATH:/usr/local/bin
           DOCKER_EXECUTABLE: /usr/bin/docker
-        uses: docker/compose-action@v2
+        uses: docker/compose@v2
         with:
           working-dir: /home/runner/work/User-Management-System/User-Management-System
           docker-compose-version: '1.29.2'
