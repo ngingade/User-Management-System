@@ -49,12 +49,7 @@ jobs:
           DOCKER_EXECUTABLE: /usr/bin/docker
         run: |
           cd ..
-          DOCKER_EXECUTABLE=/usr/bin/docker docker-compose -f /home/runner/work/User-Management-System/User-Management-System/docker-compose.yaml up -d
-
-      - name: Check Docker installation
-        run: |
-          which docker
-          docker --version
+          docker-compose -f /home/runner/work/User-Management-System/User-Management-System/docker-compose.yaml up -d
 
       - name: Print environment variables
         run: |
