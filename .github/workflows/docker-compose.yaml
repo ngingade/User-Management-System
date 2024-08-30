@@ -40,4 +40,4 @@ jobs:
           PATH: $PATH:/usr/local/bin
         run: |
           cd ..
-          docker-compose -f ./docker-compose.yaml up -d
+          docker-compose -f docker-compose.yaml up -d
