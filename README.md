@@ -56,4 +56,3 @@ ISC License
 ## Author
 
 Naveen GS
-Note: Please replace Naveen GS with your actual name.

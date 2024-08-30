@@ -44,4 +44,4 @@ jobs:
           DOCKER_EXECUTABLE: /usr/bin/docker
         run: |
           cd ..
-          docker-compose -f /home/runner/work/User-Management-System/User-Management-System/docker-compose.yaml up -d
+          DOCKER_EXECUTABLE=/usr/bin/docker docker-compose -f /home/runner/work/User-Management-System/User-Management-System/docker-compose.yaml up -d
