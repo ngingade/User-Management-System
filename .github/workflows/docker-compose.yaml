@@ -38,11 +38,11 @@ jobs:
       - name: Run debug commands
         run: |
           pwd
-          ls /github/workspace/User-Management-System/
+          ls /home/runner/work/User-Management-System/User-Management-System
           
       - name: Deploy to production
         env:
           PATH: $PATH:/usr/local/bin
         run: |
           cd ..
-          docker-compose -f /github/workspace/User-Management-System/docker-compose.yaml up -d
+          docker-compose -f /home/runner/work/User-Management-System/User-Management-System/docker-compose.yaml up -d
