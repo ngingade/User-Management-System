@@ -37,9 +37,6 @@ jobs:
 
       - name: Install Docker
         uses: docker/setup-buildx-action@v2
-      - name: Print environment variables
-        run: |
-          printenv
 
       - name: Deploy to production
         env:
@@ -48,3 +45,12 @@ jobs:
         run: |
           cd ..
           DOCKER_EXECUTABLE=/usr/bin/docker docker-compose -f /home/runner/work/User-Management-System/User-Management-System/docker-compose.yaml up -d
+
+      - name: Check Docker installation
+        run: |
+          which docker
+          docker --version
+
+      - name: Print environment variables
+        run: |
+          printenv
